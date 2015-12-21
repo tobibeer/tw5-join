@@ -1,0 +1,14 @@
+{
+	"description": "tobibeer/join tests",
+	"plugins": [
+		"tiddlywiki/jasmine",
+		"tobibeer/join"
+	],
+	"themes": [
+		"tiddlywiki/vanilla"
+	],
+	"build": {
+		"index": [
+			"--rendertiddler","$:/core/save/all","test.html","text/plain"]
+	}
+}

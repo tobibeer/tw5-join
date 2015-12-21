@@ -1,0 +1,25 @@
+title: $:/plugins/tobibeer/join/readme
+
+The plugin $:/plugins/tobibeer/join provides:
+
+; join[]
+: a filter to join input titles into one string
+: allowing prefixes, suffixes, separators or to trim titles or result
+
+!! Syntax
+
+`[join[<item-template>\<option>:<option-value>]]`
+
+Specify an item template for the ''join[]'' filter, as well as further options as `key:value`.
+
+* `[join[]]` — simply join input titles
+* `[join[<pre>%title%<post>]]` — join via item template
+* `[join[sep:- ]]` — join with separator `- `
+* `[join[trim:result]]` — trim end result
+* `[join[trim:each]]` — trim each input title
+* `[join[prefix:+]]` — final prefix
+* `[join[suffix:+]]` — final suffix
+* `[join[pre-%tile%\trim:each\prefix:ok:\sep:+]]` — combine options
+
+; documentation / examples / demos...
+: http://tobibeer.github.io/tw5-plugins#join
