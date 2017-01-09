@@ -34,7 +34,7 @@ exports.join = function(source,operator,options) {
 		// Regex for title
 		reTITLE =/\%title\%/mgi,
 		// The regex for join options
-		reVAR = /^\s*([\$\w\d\-\_\/]*):(.*)$/;
+		reVAR = /^\s*([\$\w\d\-\_\/]*):((?:.|[\r\n])*)/;
 	// Each
 	$tw.utils.each(
 		// Operand item, split via "\"
@@ -57,6 +57,8 @@ exports.join = function(source,operator,options) {
 						case "suffix":
 							join[match[1].toLowerCase()] = match[2];
 							break;
+						default:
+							console.log("tobibeer/join: unknown option in operand: ",match[1]);
 					}
 				// Otherwise use as template
 				} else {

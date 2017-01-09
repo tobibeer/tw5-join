@@ -41,22 +41,22 @@ describe("test join filter", function() {
 	});
 	it("custom separator", function() {
 		expect(wiki.filterTiddlers(
-			"[[A]] [[B]] [[C]] +[join:[sep:-]]"
+			"[[A]] [[B]] [[C]] +[join[sep:-]]"
 		,fakeWidget).join(",")).toBe("A-B-C");
 	});
 	it("custom separator, trimming each", function() {
 		expect(wiki.filterTiddlers(
-			"[[ A ]] [[ B ]] [[ C ]] +[join:[trim:each\\sep:+]]"
+			"[[ A ]] [[ B ]] [[ C ]] +[join[trim:each\\sep:+]]"
 		,fakeWidget).join(",")).toBe("A+B+C");
 	});
 	it("custom separator with spurious white-space, trimming each", function() {
 		expect(wiki.filterTiddlers(
-			"[[ A ]] [[ B ]] [[ C ]] +[join:[sep:- \\trim:each]]"
+			"[[ A ]] [[ B ]] [[ C ]] +[join[sep:- \\trim:each]]"
 		,fakeWidget).join(",")).toBe("A- B- C");
 	});
 	it("custom title pattern", function() {
 		expect(wiki.filterTiddlers(
-			"[[A]] [[B]] [[C]] +[join:[0%title%1]]"
+			"[[A]] [[B]] [[C]] +[join[0%title%1]]"
 		,fakeWidget).join(",")).toBe("0A10B10C1");
 	});
 	it("custom title pattern, trim result", function() {
@@ -66,23 +66,28 @@ describe("test join filter", function() {
 	});
 	it("custom title pattern, preserve white-space", function() {
 		expect(wiki.filterTiddlers(
-			"[[ A ]] [[ B ]] [[ C ]] +[join:[ %title% \\trim:each]]"
+			"[[ A ]] [[ B ]] [[ C ]] +[join[ %title% \\trim:each]]"
 		,fakeWidget).join(",")).toBe("ABC");
 	});
 	it("final prefix", function() {
 		expect(wiki.filterTiddlers(
-			"A B C +[join:[prefix:+]]"
+			"A B C +[join[prefix:+]]"
 		,fakeWidget).join(",")).toBe("+ABC");
 	});
 	it("final suffix", function() {
 		expect(wiki.filterTiddlers(
-			"A B C +[join:[suffix:+]]"
+			"A B C +[join[suffix:+]]"
 		,fakeWidget).join(",")).toBe("ABC+");
 	});
 	it("final prefix, suffix and custom template, separator, trimmed", function() {
 		expect(wiki.filterTiddlers(
-			"[[ A]] [[ B ]] [[C ]] +[join:[X%title%X\\prefix:start:\\suffix::end\\sep:-\\trim:each]]"
+			"[[ A]] [[ B ]] [[C ]] +[join[X%title%X\\prefix:start:\\suffix::end\\sep:-\\trim:each]]"
 		,fakeWidget).join(",")).toBe("start:XAX-XBX-XCX:end");
+	});
+	it("preserve newlines", function() {
+		expect(wiki.filterTiddlers(
+			"A B +[join[sep:\n]]"
+		,fakeWidget).join(",")).toBe("A\nB");
 	});
 });
 
